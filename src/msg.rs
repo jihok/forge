@@ -10,12 +10,21 @@ pub struct InitMsg {
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
+pub enum PoolType {
+    HighRisk {},
+    LowRisk {},
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+#[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    Deposit {},
+    Deposit { pool_type: PoolType },
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum QueryMsg {
-    GetCount {}, // TODO
+    DepositAmountOf { owner: HumanAddr },
+    TotalDepositAmount {},
+    Config {},
 }

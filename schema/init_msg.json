@@ -3,12 +3,22 @@
   "title": "InitMsg",
   "type": "object",
   "required": [
-    "count"
+    "dp_code_id",
+    "pool"
   ],
   "properties": {
-    "count": {
+    "dp_code_id": {
       "type": "integer",
-      "format": "int32"
+      "format": "uint64",
+      "minimum": 0.0
+    },
+    "pool": {
+      "$ref": "#/definitions/HumanAddr"
+    }
+  },
+  "definitions": {
+    "HumanAddr": {
+      "type": "string"
     }
   }
 }

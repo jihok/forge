@@ -1,0 +1,29 @@
+{
+  "name": "forge",
+  "version": "1.0.0",
+  "description": "This is a template to build smart contracts in Rust to run inside a [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) module on all chains that enable it. To understand the framework better, please read the overview in the [cosmwasm repo](https://github.com/CosmWasm/cosmwasm/blob/master/README.md), and dig into the [cosmwasm docs](https://www.cosmwasm.com). This assumes you understand the theory and just want to get coding.",
+  "main": "app.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "npx ts-node app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jihok/forge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jihok/forge/issues"
+  },
+  "homepage": "https://github.com/jihok/forge#readme",
+  "dependencies": {
+    "@terra-money/terra.js": "^1.8.10"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

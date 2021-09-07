@@ -5,13 +5,48 @@
     {
       "type": "object",
       "required": [
-        "get_count"
+        "deposit_amount_of"
       ],
       "properties": {
-        "get_count": {
+        "deposit_amount_of": {
+          "type": "object",
+          "required": [
+            "owner"
+          ],
+          "properties": {
+            "owner": {
+              "$ref": "#/definitions/HumanAddr"
+            }
+          }
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "total_deposit_amount"
+      ],
+      "properties": {
+        "total_deposit_amount": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
+        "config"
+      ],
+      "properties": {
+        "config": {
           "type": "object"
         }
       }
     }
-  ]
+  ],
+  "definitions": {
+    "HumanAddr": {
+      "type": "string"
+    }
+  }
 }

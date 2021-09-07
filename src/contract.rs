@@ -1,14 +1,13 @@
-use cosmwasm_std::CanonicalAddr;
 use cosmwasm_std::{
-    Api, Env, Extern, HandleResponse, InitResponse, Querier,
-    StdResult, Storage,
+    Api, Binary, CanonicalAddr, Env, Extern, HandleResponse, InitResponse, Querier, StdResult,
+    Storage,
 };
 
-use crate::msg::{HandleMsg, InitMsg};
-use crate::state;
+use crate::handler::core as Handler;
+use crate::handler::query as QueryHandler;
+use crate::msg::{HandleMsg, InitMsg, QueryMsg};
 use crate::querier;
-use crate::handler::{deposit};
-
+use crate::state;
 
 pub fn init<S: Storage, A: Api, Q: Querier>(
     deps: &mut Extern<S, A, Q>,
@@ -41,6 +40,17 @@ pub fn handle<S: Storage, A: Api, Q: Querier>(
     msg: HandleMsg,
 ) -> StdResult<HandleResponse> {
     match msg {
-        HandleMsg::Deposit {} => deposit(deps, env),
+        HandleMsg::Deposit { pool_type } => Handler::deposit(deps, env, pool_type),
+    }
+}
+
+pub fn query<S: Storage, A: Api, Q: Querier>(
+    deps: &Extern<S, A, Q>,
+    msg: QueryMsg,
+) -> StdResult<Binary> {
+    match msg {
+        QueryMsg::DepositAmountOf { owner } => QueryHandler::deposit_amount(deps, owner),
+        QueryMsg::TotalDepositAmount {} => QueryHandler::total_deposit_amount(deps),
+        QueryMsg::Config {} => QueryHandler::config(deps),
     }
 }

@@ -1,18 +1,19 @@
-
-use moneymarket::querier::deduct_tax;
+use crate::msg::PoolType;
 use cosmwasm_bignumber::Uint256;
 use cosmwasm_std::{
-    CosmosMsg, Coin, StdError, HandleResponse, StdResult, Env, Extern, Querier, Api,
-    Storage, WasmMsg, log, to_binary,
+    log, to_binary, Api, Coin, CosmosMsg, Env, Extern, HandleResponse, Querier, StdError,
+    StdResult, Storage, WasmMsg,
 };
 use cw20::Cw20HandleMsg;
+use moneymarket::querier::deduct_tax;
 
-use crate::state;
 use crate::querier;
+use crate::state;
 
 pub fn deposit<S: Storage, A: Api, Q: Querier>(
     deps: &Extern<S, A, Q>,
     env: Env,
+    pool_type: PoolType,
 ) -> StdResult<HandleResponse> {
     let config = state::read(&deps.storage)?;
 
@@ -38,6 +39,8 @@ pub fn deposit<S: Storage, A: Api, Q: Querier>(
         )));
     }
 
+    //  store
+
     let dp_mint_amount = deduct_tax(
         deps,
         Coin {
@@ -49,12 +52,7 @@ pub fn deposit<S: Storage, A: Api, Q: Querier>(
 
     Ok(HandleResponse {
         messages: [
-            querier::pool_deposit_msg(
-                deps,
-                &config.pool,
-                &config.stable_denom,
-                received.into(),
-            )?,
+            querier::pool_deposit_msg(deps, &config.pool, &config.stable_denom, received.into())?,
             vec![CosmosMsg::Wasm(WasmMsg::Execute {
                 contract_addr: deps.api.human_address(&config.dp_token)?,
                 msg: to_binary(&Cw20HandleMsg::Mint {
