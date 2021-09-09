@@ -29,23 +29,6 @@ const mk = new MnemonicKey({
 // wallets abstract transaction building
 const wallet = terra.wallet(mk);
 
-// create a simple message that moves coin balances
-// const send = new MsgSend(
-//   'terra1x46rqay4d3cssq8gxxvqz8xt6nwlz4td20k38v',
-//   'terra17lmam6zguazs5q5u6z5mmx76uj63gldnse2pdp',
-//   { uluna: 1000000, ukrw: 1230201, uusd: 1312029 }
-// );
-
-// wallet
-//   .createAndSignTx({
-//     msgs: [send],
-//     memo: 'test from terra.js!',
-//   })
-//   .then(tx => terra.tx.broadcast(tx))
-//   .then(result => {
-//     console.log(`TX hash: ${result.txhash}`);
-//   });
-
 (async () => {
   try {
     const storeCode = new MsgStoreCode(
@@ -56,10 +39,7 @@ const wallet = terra.wallet(mk);
     const storeCodeTx = await wallet.createAndSignTx({
       msgs: [storeCode],
     });
-    console.log(terra);
     const storeCodeTxResult = await terra.tx.broadcast(storeCodeTx);
-
-    console.log(storeCodeTxResult);
 
     if (isTxError(storeCodeTxResult)) {
       throw new Error(

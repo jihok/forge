@@ -12,24 +12,15 @@ The $FORGE locks should last for some predetermined (TBD) time after the underly
 
 # $FORGE
 
-To get the ball rolling, Forge treasury should seed initial amounts of locked $FORGE for each pool, and a mechanism to ensure a robust $FORGE treasury should be determined (e.g. withdrawal fees and/or keeping a percentage of reward tokens). Since each of these pools reaps their benfits from the other, users should be incentivized to deposit into the lagging pool until a balance is reached.
+To get the ball rolling, Forge treasury should seed initial amounts of locked $FORGE for each pool, and a mechanism to ensure a robust $FORGE treasury should be determined (e.g. withdrawal fees and/or keeping a percentage of reward tokens). Since each of these pools reaps their benfits from the other, users should be incentivized to deposit into the undersubscribed pool until a balance is reached.
 
-For projects where sentiment is bullish, we expect a larger pool of boosting locked $FORGE, which should in turn increase the floor rate for insured depositors. The insurance rate in this case should trend towards competitive with a user depositing into Anchor Earn to attract investors who may not even be that interested in the underlying reward token.
+If the locked boost pool is oversubscribed, the floor rate for insured depositors should trend towards competitive with a user depositing into Anchor Earn to attract investors who may not even be that interested in the underlying reward token. If the locked insured pool is oversubscribed, the boosted rate in this case should offer among the most attractive APRs on Terra.
 
-<!-- TODO: diagram -->
-
-For projects where sentiment is bearish, we might expect more depositors seeking insured yield. The boosted rate in this case should be among the most attractive APRs on Terra. Alternatively there may just be low demand for $FORGE at this time. Since there is risk of large amounts of $FORGE dumping after a pool unlocks, an attractive $FORGE single-asset stake should be implemented as well (e.g. a portion of reward tokens earned from other Forge pools).
+Alternatively there may just be low demand for $FORGE if sentiment towards a project launch is particularly bearish. Since there is risk of large amounts of $FORGE dumping after a pool unlocks, an attractive $FORGE single-asset stake should be implemented as well (e.g. a portion of fees and reward tokens earned from other Forge pools).
 
 ## Possibilities
 
-- Since sentiment changes over time, adaptive rates may be determined linked to projects hitting certain milestones.
-- This model can be applied to any yield-bearing asset like LP tokens as well, although some changes would need to be made.
-
-## Protocol actors
-
-- Boost depositors: increase demand for $FORGE at launch of bullish projects
-- Insurance depositors: increase demand for $FORGE at launch of bearish projects or when too many boost depositors
-- Pylon/Project teams: beneficiaries of Forge by driving $UST deposits
+- This model can be applied to any yield-bearing asset like LP tokens as well, since the model essentially takes a "deposit fee" for reward redirection between low/high risk depositors, although some adjustments would need needed.
 
 ## Governance
 
