@@ -5,7 +5,7 @@
   "required": [
     "dp_token",
     "owner",
-    "pool",
+    "pylon_pool",
     "stable_denom",
     "this"
   ],
@@ -16,7 +16,7 @@
     "owner": {
       "$ref": "#/definitions/CanonicalAddr"
     },
-    "pool": {
+    "pylon_pool": {
       "$ref": "#/definitions/CanonicalAddr"
     },
     "stable_denom": {

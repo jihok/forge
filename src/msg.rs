@@ -12,7 +12,7 @@ pub struct InitMsg {
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    RegisterDPToken {}, // TODO: accept a Type enum to register high/low risk DP tokens
+    RegisterDPToken {}, // TODO: accept a PoolType enum
     Deposit {},
 }
 

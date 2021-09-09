@@ -4,7 +4,8 @@
   "type": "object",
   "required": [
     "dp_code_id",
-    "pool"
+    "pool_name",
+    "pylon_pool"
   ],
   "properties": {
     "dp_code_id": {
@@ -12,7 +13,10 @@
       "format": "uint64",
       "minimum": 0.0
     },
-    "pool": {
+    "pool_name": {
+      "type": "string"
+    },
+    "pylon_pool": {
       "$ref": "#/definitions/HumanAddr"
     }
   },

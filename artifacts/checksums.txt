@@ -1,1 +1,1 @@
-e20f92194b061ab5a9eda0ac5db3f75bd4e6f5de67eadf42a8ba37753c990b69  my_first_contract.wasm
+982661f7c7bdcfc067a19a572e2e47be4310c49111591552a854cd5105cee83b  my_first_contract.wasm

@@ -57,7 +57,7 @@ pub fn init<S: Storage, A: Api, Q: Querier>(
             })?,
         })],
         log: vec![],
-    });
+    })
 }
 
 pub fn handle<S: Storage, A: Api, Q: Querier>(
@@ -76,8 +76,8 @@ pub fn query<S: Storage, A: Api, Q: Querier>(
     msg: QueryMsg,
 ) -> StdResult<Binary> {
     match msg {
-        QueryMsg::DepositAmountOf { owner } => QueryHandler::deposit_amount(deps, owner), // TODO: should accept a RiskLevel enum
-        QueryMsg::TotalDepositAmount {} => QueryHandler::total_deposit_amount(deps), // TODO: should accept a RiskLevel enum
+        QueryMsg::DepositAmountOf { owner } => QueryHandler::deposit_amount(deps, owner), // TODO: should accept a PoolType enum
+        QueryMsg::TotalDepositAmount {} => QueryHandler::total_deposit_amount(deps), // TODO: should accept a PoolType enum
         QueryMsg::Config {} => QueryHandler::config(deps),
     }
 }

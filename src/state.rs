@@ -13,7 +13,6 @@ pub struct Config {
     pub pylon_pool: CanonicalAddr,
     pub stable_denom: String,
     pub dp_token: CanonicalAddr,
-    // pub dp_token_high: CanonicalAddr,
 }
 
 pub fn store<S: Storage>(storage: &mut S, data: &Config) -> StdResult<()> {

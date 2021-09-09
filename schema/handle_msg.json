@@ -5,6 +5,17 @@
     {
       "type": "object",
       "required": [
+        "register_d_p_token"
+      ],
+      "properties": {
+        "register_d_p_token": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "required": [
         "deposit"
       ],
       "properties": {
