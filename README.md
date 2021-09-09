@@ -43,7 +43,7 @@ The code in this repository defines a smart contract that users can deposit fund
 - `cargo wasm` to build
 - `cargo run-script optimize` to minimize the WASM binary
 - `cargo schema` to generate the JSON schema
-- `npm run start` to deploy the contract to `tequila-0004` testnet
+- `npm run start` to deploy the contract to `tequila-0004` testnet (TODO)
 
 # Theoretical Launch Roadmap
 
