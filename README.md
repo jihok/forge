@@ -1,19 +1,34 @@
 # FORGE PROTOCOL
 
-Forge aims to give investors depositors additional risk options for Pylon Pool deposits by launching 2 companion pools for each Pylon Pool. One pool will be for the lower risk investors who want a more stable and liquid yield, and another that gives depositors enhanced emissions of the Pylon Pool's reward token.
+Forge aims to upgrade Pylon deposit pools by launching 2 companion pools with unique benefits for each Pylon pool: a yield-boosted pool and a yield-insured pool. Users must also lock some $FORGE to deposit into one of these pools. Depositors in the yield-insured pool redirect most of their Pylon rewards to the yield-boosted depositors. However, the locked $FORGE of yield-boosters is in return at risk--the yield-insured depositors may redeem their reward tokens against it at any time.
 
-In the lower risk pool, investors will redirect a large part of their reward yield to the enhanced emissions pool in exchange for yield insurance.
 ![alt text](docs/assets/low_risk_deposit.png)
 
-The enhanced emissions pool is a higher risk strategy. If foregoing depositing $UST into Anchor Earn is the opportunity cost of Pylon pools, a price can be estimated for the pool's reward token. Entering this pool can dramatically lower that cost basis.
-![alt text](docs/assets/high_risk_deposit.png) /_ TODO: show receipt of locked $FORGE and DP Tokens _/
-To enter the enhanced emissions pool, users will also need to lock some $FORGE. The amount of locked $FORGE will determine the extent of the reward token emissions boost (up to a determined maximum boost). These depositors' locked $FORGE is also at risk of loss as the backstop for low-risk depositors.
+<!-- TODO: concat this and high-risk diagram + show receipt of locked $FORGE and DP Tokens -->
 
+The $FORGE locks should last for some predetermined time after the underlying Pylon pools end. As long as the lock persists, redemptions should be respected.
 ![alt text](docs/assets/redeem.png)
 
-Since each of these pools depends on the other, users should be incentivized to deposit into the lagging pool when they are unbalanced. For projects where people are generally bullish, we expect more high-risk depositors, which should in turn increase the floor rate for low-risk depositors. For projects where people are generally bearish, we expect more low-risk depositors, which should in turn increase the yield for high-risk depositors.
+# $FORGE
 
-Forge treasury may need to seed liquidity for each pool...
+Since each of these pools depends on the other, users should be incentivized to deposit into the lagging pool when they are unbalanced.
+For projects where people are generally bullish, we expect more high-risk depositors, which should in turn increase the floor rate for low-risk depositors.
+
+<!-- TODO: diagram -->
+
+For projects where people are generally bearish, we expect more low-risk depositors, which should in turn increase the yield for high-risk depositors.
+
+<!-- TODO: diagram -->
+
+To get the ball rolling, Forge treasury may need to seed initial liquidity in each pool.
+
+## Governance Parameters:
+
+- Initial seeding
+- Lock time
+- Boost rate (rate of change + max)
+- Insurance rate (rate of change + max)
+- Fees
 
 # Current state
 
