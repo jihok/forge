@@ -1,14 +1,19 @@
 # FORGE PROTOCOL
 
-Forge aims to give investors depositors additional options for Pylon Pool deposits. Forge will launch 2 companion pools to each Pylon Pool--one that ensures depositors a more stable and liquid yield, and another that gives depositors enhanced emissions of the Pylon Pool's reward token.
+Forge aims to give investors depositors additional risk options for Pylon Pool deposits by launching 2 companion pools for each Pylon Pool. One pool will be for the lower risk investors who want a more stable and liquid yield, and another that gives depositors enhanced emissions of the Pylon Pool's reward token.
 
-Pylon Pools may be principal protected, but they come with great opportunity cost as investors take on illiquidity and variable, or even zero, return. Forge offers a lower risk strategy for some redirection of reward token emission.
+In the lower risk pool, investors will redirect a large part of their reward yield to the enhanced emissions pool in exchange for yield insurance.
 ![alt text](docs/assets/low_risk_deposit.png)
 
-The enhanced emissions pool is a high risk strategy. To enter the enhanced emissions pool, users will also need to lock some $FORGE. The amount of locked $FORGE will determine the extent of the reward token emissions boost (up to a determined maximum boost). These depositors' locked $FORGE is also at risk of loss, as this is the insurance pool for the low-risk depositors.
-![alt text](docs/assets/high_risk_deposit.png)
+The enhanced emissions pool is a higher risk strategy. If foregoing depositing $UST into Anchor Earn is the opportunity cost of Pylon pools, a price can be estimated for the pool's reward token. Entering this pool can dramatically lower that cost basis.
+![alt text](docs/assets/high_risk_deposit.png) /_ TODO: show receipt of locked $FORGE and DP Tokens _/
+To enter the enhanced emissions pool, users will also need to lock some $FORGE. The amount of locked $FORGE will determine the extent of the reward token emissions boost (up to a determined maximum boost). These depositors' locked $FORGE is also at risk of loss as the backstop for low-risk depositors.
 
 ![alt text](docs/assets/redeem.png)
+
+Since each of these pools depends on the other, users should be incentivized to deposit into the lagging pool when they are unbalanced. For projects where people are generally bullish, we expect more high-risk depositors, which should in turn increase the floor rate for low-risk depositors. For projects where people are generally bearish, we expect more low-risk depositors, which should in turn increase the yield for high-risk depositors.
+
+Forge treasury may need to seed liquidity for each pool...
 
 # Current state
 
@@ -23,7 +28,7 @@ The code in this repository defines a smart contract that users can deposit fund
 - `cargo schema` to generate the JSON schema
 - `npm run start` to deploy the contract to `tequila-0004` testnet
 
-# Launch Roadmap
+# Theoretical Launch Roadmap
 
 ## 1. Seed liquidity
 

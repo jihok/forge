@@ -4,21 +4,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InitMsg {
-    pub pool: HumanAddr,
+    pub pool_name: String,
+    pub pylon_pool: HumanAddr,
     pub dp_code_id: u64,
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
-pub enum PoolType {
-    HighRisk {},
-    LowRisk {},
-}
-
-#[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
-#[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    Deposit { pool_type: PoolType },
+    RegisterDPToken {}, // TODO: accept a Type enum to register high/low risk DP tokens
+    Deposit {},
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
