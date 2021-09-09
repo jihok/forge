@@ -1,14 +1,13 @@
-
-use moneymarket::querier::deduct_tax;
 use cosmwasm_bignumber::Uint256;
 use cosmwasm_std::{
-    CosmosMsg, Coin, StdError, HandleResponse, StdResult, Env, Extern, Querier, Api,
-    Storage, WasmMsg, log, to_binary,
+    log, to_binary, Api, CanonicalAddr, Coin, CosmosMsg, Env, Extern, HandleResponse, Querier,
+    StdError, StdResult, Storage, WasmMsg,
 };
 use cw20::Cw20HandleMsg;
+use moneymarket::querier::deduct_tax;
 
-use crate::state;
 use crate::querier;
+use crate::state;
 
 pub fn deposit<S: Storage, A: Api, Q: Querier>(
     deps: &Extern<S, A, Q>,
@@ -51,7 +50,7 @@ pub fn deposit<S: Storage, A: Api, Q: Querier>(
         messages: [
             querier::pool_deposit_msg(
                 deps,
-                &config.pool,
+                &config.pylon_pool,
                 &config.stable_denom,
                 received.into(),
             )?,
@@ -70,6 +69,25 @@ pub fn deposit<S: Storage, A: Api, Q: Querier>(
             log("sender", env.message.sender),
             log("amount", dp_mint_amount),
         ],
+        data: None,
+    })
+}
+
+pub fn register_dp_token<S: Storage, A: Api, Q: Querier>(
+    deps: &mut Extern<S, A, Q>,
+    env: Env,
+) -> StdResult<HandleResponse> {
+    let mut config = state::read(&deps.storage)?;
+    if config.dp_token != CanonicalAddr::default() {
+        return Err(StdError::unauthorized());
+    }
+
+    config.dp_token = deps.api.canonical_address(&env.message.sender)?;
+    state::store(&mut deps.storage, &config)?;
+
+    Ok(HandleResponse {
+        messages: vec![],
+        log: vec![log("dp_token", env.message.sender)],
         data: None,
     })
 }

@@ -1,17 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "State",
+  "title": "Config",
   "type": "object",
   "required": [
-    "count",
-    "owner"
+    "dp_token",
+    "owner",
+    "pylon_pool",
+    "stable_denom",
+    "this"
   ],
   "properties": {
-    "count": {
-      "type": "integer",
-      "format": "int32"
+    "dp_token": {
+      "$ref": "#/definitions/CanonicalAddr"
     },
     "owner": {
+      "$ref": "#/definitions/CanonicalAddr"
+    },
+    "pylon_pool": {
+      "$ref": "#/definitions/CanonicalAddr"
+    },
+    "stable_denom": {
+      "type": "string"
+    },
+    "this": {
       "$ref": "#/definitions/CanonicalAddr"
     }
   },

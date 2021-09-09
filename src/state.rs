@@ -10,7 +10,7 @@ pub static CONFIG_KEY: &[u8] = b"config";
 pub struct Config {
     pub this: CanonicalAddr,
     pub owner: CanonicalAddr,
-    pub pool: CanonicalAddr,
+    pub pylon_pool: CanonicalAddr,
     pub stable_denom: String,
     pub dp_token: CanonicalAddr,
 }

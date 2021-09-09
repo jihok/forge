@@ -1,0 +1,29 @@
+{
+  "name": "forge",
+  "version": "1.0.0",
+  "description": "Forge Protocol",
+  "main": "app.ts",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "start": "npx ts-node app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jihok/forge.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jihok/forge/issues"
+  },
+  "homepage": "https://github.com/jihok/forge#readme",
+  "dependencies": {
+    "@terra-money/terra.js": "^1.8.10"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

@@ -1,90 +1,64 @@
-# CosmWasm Starter Pack
+# FORGE PROTOCOL
 
-This is a template to build smart contracts in Rust to run inside a
-[Cosmos SDK](https://github.com/cosmos/cosmos-sdk) module on all chains that enable it.
-To understand the framework better, please read the overview in the
-[cosmwasm repo](https://github.com/CosmWasm/cosmwasm/blob/master/README.md),
-and dig into the [cosmwasm docs](https://www.cosmwasm.com).
-This assumes you understand the theory and just want to get coding.
+Forge aims to upgrade Pylon deposit pools by launching 2 companion pools with unique benefits for each Pylon Gateway launch: a yield-boosted pool and a yield-insured pool. Users must also lock some $FORGE to deposit into one of these pools. Depositors in the yield-insured pool redirect most of their Pylon rewards to the yield-boosted depositors. However, the locked $FORGE of yield-boosters is in return at risk--the yield-insured depositors may redeem their reward tokens against it at any time. The boost/insurance rate scales with locked $FORGE value on a per block basis.
 
-## Creating a new repo from template
+![alt text](docs/assets/user_deposits.png)
 
-Assuming you have a recent version of rust and cargo installed (via [rustup](https://rustup.rs/)),
-then the following should get you a new repo to start a contract:
+Forge users will earn $FORGE emissions per block for depositing. The option for users to sell at any time is a feature to offset the biggest risk of Pylon pools, the long-term locking of liquidity. Giving users a liquid yield decreases that risk for users and may defend the reward token from being dumped at pool expiry.
 
-First, install
-[cargo-generate](https://github.com/ashleygwilliams/cargo-generate).
-Unless you did that before, run this line now:
+The $FORGE locks should last for some predetermined (TBD) time after the underlying Pylon pools end. Varying lock times may be considered but seem complex, and fragmenting locked $FORGE liquidity feels pretty bad since boost/insurance pools must coexist. As long as the lock period persists, insurance redemptions should be respected.
 
-```sh
-cargo install cargo-generate --features vendored-openssl
-```
+![alt text](docs/assets/redemption.png)
 
-Now, use it to create your new contract.
-Go to the folder in which you want to place it and run:
+# $FORGE
 
-**0.10 (latest)**
+To get the ball rolling, Forge treasury should seed initial amounts of locked $FORGE for each pool, and a mechanism to ensure a robust $FORGE treasury should be determined (e.g. withdrawal fees and/or keeping a percentage of reward tokens). Since each of these pools reaps their benfits from the other, users should be incentivized to deposit into the undersubscribed pool until a balance is reached.
 
-```sh
-cargo generate --git https://github.com/CosmWasm/cosmwasm-template.git --name PROJECT_NAME
-```
+If the locked boost pool is oversubscribed, the floor rate for insured depositors should trend towards competitive with a user depositing into Anchor Earn to attract investors who may not even be that interested in the underlying reward token. If the locked insured pool is oversubscribed, the boosted rate in this case should offer among the most attractive APRs on Terra.
 
-**0.9**
+Alternatively there may just be low demand for $FORGE if sentiment towards a project launch is particularly bearish. Since there is risk of large amounts of $FORGE dumping after a pool unlocks, an attractive $FORGE single-asset stake should be implemented as well (e.g. a portion of fees and reward tokens earned from other Forge pools).
 
-```sh
-cargo generate --git https://github.com/CosmWasm/cosmwasm-template.git --branch 0.9 --name PROJECT_NAME
-```
+## Possibilities
 
-**0.8**
+- This model can be applied to any yield-bearing asset like LP tokens as well, since the model essentially takes a "deposit fee" for reward redirection between low/high risk depositors, although some adjustments would need needed.
 
-```sh
-cargo generate --git https://github.com/CosmWasm/cosmwasm-template.git --branch 0.8 --name PROJECT_NAME
-```
+## Governance
 
-You will now have a new folder called `PROJECT_NAME` (I hope you changed that to something else)
-containing a simple working contract and build system that you can customize.
+We want to tie governance rights to monetary incentive as closely as possible. All of the following parameters are candidates for governance votes per launch:
 
-## Create a Repo
+- Initial seeding
+- Lock time
+- Boost rate (rate of change + max)
+- Insurance rate (rate of change + max)
+- Fees
 
-After generating, you have a initialized local git repo, but no commits, and no remote.
-Go to a server (eg. github) and create a new upstream repo (called `YOUR-GIT-URL` below).
-Then run the following:
+# Current state
 
-```sh
-# this is needed to create a valid Cargo.lock file (see below)
-cargo check
-git checkout -b master # in case you generate from non-master
-git add .
-git commit -m 'Initial Commit'
-git remote add origin YOUR-GIT-URL
-git push -u origin master
-```
+![alt text](docs/assets/user_deposit_current.png)
 
-## CI Support
+The code in this repository defines a smart contract that users can deposit funds into. Each implementation of this contract should be 1:1 with a corresponding Pylon Pool contract where user funds will be directed to under the hood. As far as Pylon is concerned, Forge would just be one large depositor (subject to change if Pylon enacts deposit limits per user, but a whitelist would allow for this in this case).
 
-We have template configurations for both [GitHub Actions](.github/workflows/Basic.yml)
-and [Circle CI](.circleci/config.yml) in the generated project, so you can
-get up and running with CI right away.
+# Run/Deploy
 
-One note is that the CI runs all `cargo` commands
-with `--locked` to ensure it uses the exact same versions as you have locally. This also means
-you must have an up-to-date `Cargo.lock` file, which is not auto-generated.
-The first time you set up the project (or after adding any dep), you should ensure the
-`Cargo.lock` file is updated, so the CI will test properly. This can be done simply by
-running `cargo check` or `cargo unit-test`.
+- `cargo wasm` to build
+- `cargo run-script optimize` to minimize the WASM binary
+- `cargo schema` to generate the JSON schema
+- `npm run start` to deploy the contract to `tequila-0004` testnet
 
-## Using your project
+# Theoretical Launch Roadmap
 
-Once you have your custom repo, you should check out [Developing](./Developing.md) to explain
-more on how to run tests and develop code. Or go through the
-[online tutorial](https://www.cosmwasm.com/docs/getting-started/intro) to get a better feel
-of how to develop.
+## 1. Seed liquidity across Terra users
 
-[Publishing](./Publishing.md) contains useful information on how to publish your contract
-to the world, once you are ready to deploy it on a running blockchain. And
-[Importing](./Importing.md) contains information about pulling in other contracts or crates
-that have been published.
+A launch via Pylon makes sense since Forge's primary purpose is to further incentivize utilization of Pylon Gateway pools beyond its current appeal.
 
-Please replace this README file with information about your specific project. You can keep
-the `Developing.md` and `Publishing.md` files as useful referenced, but please set some
-proper description in the README.
+## 2. Incentivized LP pools
+
+Inflation should allow for $FORGE to land in as many wallets as possible and/or afford users time to accumulate.
+
+## 3. Deposit Pools
+
+$FORGE lock pools and rates.
+
+## 4. Redemption for yield-insured
+
+Technically this does not need to be complete when deposits open. However it'd be negligent to open for deposits without this.
